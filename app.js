@@ -15,7 +15,7 @@ $(() => {
 
     const appendList = (array, location) => {
         const template = array.map((item, id) => {
-            eturn `<li class="product col-3">
+            return `<li class="product col-3">
                 <img src="${item.picture}" alt="">
                 <div class="product-content">
                 <h4>${item.name} -

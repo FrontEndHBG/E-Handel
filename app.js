@@ -30,11 +30,15 @@ $(() => {
     };
 
     const addToCart = (array, id, location) => {
-        let a = array.find((i) => {
-            return i.id === id;
-        });
+        
+        
+        let a = array.find(i => i.id === id);
+        
+        
+        
 
         cart.push(a);
+        
         const item = `
         <li class="item" id="${a.id}">
             <h4>${a.name}</h4>
@@ -61,8 +65,8 @@ $(() => {
 
     appendList(products, $('.product-list'));
 
-    $('.product').on('click', 'button', (e) => {
-        let id = $(this).attr('id');
+    $('.product').on('click', 'button', (e) => { 
+        let id = e.currentTarget.id;
         addToCart(products, +id, $('.cart-list'));
     });
 

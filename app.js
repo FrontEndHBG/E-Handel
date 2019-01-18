@@ -1,5 +1,6 @@
-$(function () {
-    var products = [
+$(() => {
+
+    const products = [
 
 
         { name: 'Samsung TV', price: 1500, id: 1, description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde fugit, vel quibusdam fugiat at atque vero, minima ratione tempora architecto sit aperiam similique in quidem, iste nemo debitis quaerat nisi!', picture: 'https://picsum.photos/300/?image=0', category: 'Elektronik' },
@@ -10,11 +11,11 @@ $(function () {
         { name: 'Skrivbord', price: 2000, id: 6, description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde fugit, vel quibusdam fugiat at atque vero, minima ratione tempora architecto sit aperiam similique in quidem, iste nemo debitis quaerat nisi!', picture: 'https://picsum.photos/300/?image=400', category: 'Kontor' }
     ];
 
-    var cart = [];
+    let cart  = [];
 
-    var appendList = function (array, location) {
-        var template = array.map(function (item, id) {
-            return `<li class="product col-3">
+    const appendList = (array, location) => {
+        const template = array.map((item, id) => {
+            eturn `<li class="product col-3">
                 <img src="${item.picture}" alt="">
                 <div class="product-content">
                 <h4>${item.name} -
@@ -28,15 +29,13 @@ $(function () {
         $(location).html(template);
     };
 
-    var addToCart = function (array, id, location) {
-        var a = array.find(function (i) {
+    const addToCart = (array, id, location) => {
+        let a = array.find((i) => {
             return i.id === id;
-
         });
 
         cart.push(a);
-        console.log(cart);
-        var item = `
+        const item = `
         <li class="item" id="${a.id}">
             <h4>${a.name}</h4>
             <button type="button">X</button>
@@ -46,13 +45,12 @@ $(function () {
         $(location).append(item);
     };
 
-    var removeFromCart = function (array, removedItem) {
+    const removeFromCart = (array, removedItem) => {
         array.splice(removedItem, 1);
-
     };
 
-    var populateCart = function (array, location) {
-        var item = `
+    const populateCart = (array, location) => {
+        let item = `
         <li class="item" id="${array.id}">
             <h4>${array.name}</h4>
             <button type="button">X</button>
@@ -61,19 +59,16 @@ $(function () {
         $('span.amount').text(array.length);
     };
 
-
     appendList(products, $('.product-list'));
 
-    $('.product').on('click', 'button', function (event) {
-        var id = $(this).attr('id');
+    $('.product').on('click', 'button', (e) => {
+        let id = $(this).attr('id');
         addToCart(products, +id, $('.cart-list'));
     });
 
-    $('.cart-list').on('click', 'button', function (e) {
-        var item = $(e.currentTarget).closest('li').remove();
+    $('.cart-list').on('click', 'button', (e) => {
+        let item = $(e.currentTarget).closest('li').remove();
         removeFromCart(cart, item);
         populateCart(cart, $('.cart-list'));
     });
-
-
 });
